@@ -3,7 +3,7 @@ import urllib.parse
 import requests
 import json
 from bs4 import BeautifulSoup
-
+import csv
 
 def main():
     departement = None
@@ -43,9 +43,27 @@ def scrap(departement, professionNom):
         if tel is not None:
             tel = tel.get_text()
         adresse = medecin.find("div", class_="adresse").get_text()
-        validMedecins.append({name, tel, adresse})
+        validMedecins.append({name:name, tel:tel, adresse:adresse})
     
-    print(validMedecins)
+#     addToCsv(validMedecins)
+
+
+# def addToCsv(validMedecins):
+
+#     f = open('medecins.csv', 'w')
+
+#     # create the csv writer
+#     writer = csv.writer(f)
+
+#     # write a row to the csv file
+#     with open('medecins.csv', 'w', encoding='UTF8') as f:
+#         # create the csv writer
+
+#         writer = csv.DictWriter(f, fieldnames=["name", "tel", "adresse"])
+#         writer.writeheader()
+
+#         writer.writerows(validMedecins)
+
 
 main()
 
